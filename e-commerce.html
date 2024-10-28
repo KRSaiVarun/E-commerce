@@ -5,11 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>E-Commerce Website</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Roboto', sans-serif;
             padding: 20px;
             background-color: #f8f9fa;
+        }
+
+        nav {
+            margin-bottom: 20px;
         }
 
         #auth-section, #main-content {
@@ -34,10 +39,11 @@
             background-color: #007bff;
             color: white;
             border: none;
-            padding: 10px;
+            padding: 12px 20px;
             cursor: pointer;
             border-radius: 5px;
             font-size: 16px;
+            transition: background-color 0.3s;
         }
 
         button:hover {
@@ -56,15 +62,21 @@
             padding: 10px;
             width: 200px;
             text-align: center;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
             background-color: #fff;
-            border-radius: 8px;
+            border-radius: 10px;
+            transition: transform 0.2s;
+        }
+
+        .product-card:hover {
+            transform: scale(1.05);
         }
 
         .product-card img {
             width: 100%;
             height: auto;
             border-bottom: 1px solid #ddd;
+            border-radius: 10px 10px 0 0; /* Rounded top corners */
         }
 
         .product-info {
@@ -119,28 +131,40 @@
     </style>
 </head>
 <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">E-Shop</a>
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav ml-auto">
+                </ul>
+        </div>
+    </nav>
+
     <div id="auth-section">
         <h2>Login</h2>
         <form id="login-form">
-            <label for="username">Username:</label>
-            <input type="text" id="username" name="username" required><br>
-            <label for="password">Password:</label>
-            <input type="password" id="password" name="password" required><br>
-            <button type="submit">Login</button>
+            <div class="form-group">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" class="form-control" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Login</button>
         </form>
     </div>
 
     <div id="main-content">
         <div class="filter-sort-section">
             <h2>Filter Products</h2>
-            <select id="filter">
+            <select id="filter" class="form-control mb-3">
                 <option value="">All Categories</option>
                 <option value="books">Books</option>
                 <option value="clothing">Clothing</option>
             </select>
 
             <h2>Sort Products</h2>
-            <select id="sort">
+            <select id="sort" class="form-control mb-3">
                 <option value="price-asc">Price: Low to High</option>
                 <option value="price-desc">Price: High to Low</option>
             </select>
@@ -160,24 +184,30 @@
 
         <h2>Checkout</h2>
         <form id="checkout-form">
-            <label for="card-number">Card Number:</label>
-            <input type="text" id="card-number" required><br>
-            <label for="expiry-date">Expiry Date:</label>
-            <input type="text" id="expiry-date" required><br>
-            <label for="cvc">CVC:</label>
-            <input type="text" id="cvc" required><br>
-            <button type="submit">Pay Now</button>
+            <div class="form-group">
+                <label for="card-number">Card Number:</label>
+                <input type="text" id="card-number" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="expiry-date">Expiry Date:</label>
+                <input type="text" id="expiry-date" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="cvc">CVC:</label>
+                <input type="text" id="cvc" class="form-control" required>
+            </div>
+            <button type="submit" class="btn btn-success">Pay Now</button>
         </form>
     </div>
 
     <script>
         const products = [
-            { id: 1, name: 'Cover for all Electronics products', price: 299.99, image: 'https://econtroldevices.com/wp-content/uploads/2021/12/7.png' },
-            { id: 2, name: 'Pair of shirt and pants', price: 39.99, image: 'https://static.cdn.packhelp.com/wp-content/uploads/2019/01/06154209/P1310201-2.png' },
-            { id: 3, name: 'Combo', price: 49.99, image: 'https://www.apparelsearch.com/influence/products/images/fashion_products.jpg' },
-            { id: 4, name: 'Sets of 10 story Books', price: 19.99, image: 'https://www.maplepress.co.in/cdn/shop/products/9789391924195_700x700.jpg?v=1640345502' },
-            { id: 5, name: 'Naruto books', price: 59.99, image: 'https://rukminim2.flixcart.com/image/850/1000/xif0q/regionalbooks/l/f/h/naruto-box-set1-vol-1-27-original-books-original-imagzwwsnhpz2ffv.jpeg?q=90&crop=false' },
-            { id: 6, name: 'Water bottle', price: 99.99, image: 'https://www.jiomart.com/images/product/original/rvdeydb6ry/betlex-2liter-water-bottle-with-straw-and-motivational-bottle-portable-mouth-and-flip-to-open-lid-one-hand-drink-for-gym-yoga-travel-and-any-other-use-product-images-orvdeydb6ry-p602099837-4-202306031157.jpg?' }
+            { id: 1, name: 'Cover for all Electronics products', price: 299.99, image: 'https://econtroldevices.com/wp-content/uploads/2021/12/7.png', category: 'electronics' },
+            { id: 2, name: 'Pair of shirt and pants', price: 39.99, image: 'https://static.cdn.packhelp.com/wp-content/uploads/2019/01/06154209/P1310201-2.png', category: 'clothing' },
+            { id: 3, name: 'Combo', price: 49.99, image: 'https://www.apparelsearch.com/influence/products/images/fashion_products.jpg', category: 'clothing' },
+            { id: 4, name: 'Sets of 10 story Books', price: 19.99, image: 'https://www.maplepress.co.in/cdn/shop/products/9789391924195_700x700.jpg?v=1640345502', category: 'books' },
+            { id: 5, name: 'Naruto books', price: 59.99, image: 'https://rukminim2.flixcart.com/image/850/1000/xif0q/regionalbooks/l/f/h/naruto-box-set1-vol-1-27-original-books-original-imagzwwsnhpz2ffv.jpeg?q=90&crop=false', category: 'books' },
+            { id: 6, name: 'Water bottle', price: 99.99, image: 'https://www.jiomart.com/images/product/original/rvdeydb6ry/betlex-2liter-water-bottle-with-straw-and-motivational-bottle-portable-mouth-and-flip-to-open-lid-one-hand-drink-for-gym-yoga-travel-and-any-other-use-product-images-orvdeydb6ry-p602099837-4-202306031157.jpg?', category: 'electronics' }
         ];
 
         const cart = [];
@@ -210,7 +240,7 @@
                     <div class="product-info">
                         <h3>${product.name}</h3>
                         <p>${product.price.toFixed(2)} ₹</p>
-                        <button class="add-to-cart" data-id="${product.id}">Add to Cart</button>
+                        <button class="add-to-cart btn btn-info" data-id="${product.id}">Add to Cart</button>
                     </div>
                 `;
                 productList.appendChild(productCard);
@@ -263,7 +293,7 @@
                     <div>
                         <p>${product.name}</p>
                         <p>${product.price.toFixed(2)} ₹</p>
-                        <button onclick="removeFromCart(${product.id})">Remove</button>
+                        <button class="btn btn-danger" onclick="removeFromCart(${product.id})">Remove</button>
                     </div>
                 `;
                 cartDiv.appendChild(cartItem);
