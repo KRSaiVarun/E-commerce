@@ -4,9 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>E-Commerce Website</title>
-    <!-- Add to the head section -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -84,7 +82,7 @@
             color: #555;
         }
 
-        #cart, #checkout-form {
+        #cart {
             margin-top: 20px;
             padding: 20px;
             background-color: #fff;
@@ -105,24 +103,7 @@
         }
 
         .filter-sort-section {
-            background-color: #007bff;
-            color: white;
-            padding: 15px;
-            border-radius: 8px;
             margin-bottom: 20px;
-        }
-
-        .filter-sort-section h2 {
-            margin-bottom: 10px;
-        }
-
-        .filter-sort-section select {
-            width: 100%;
-            padding: 10px;
-            border-radius: 5px;
-            border: none;
-            margin-bottom: 10px;
-            font-size: 16px;
         }
 
         @media (max-width: 768px) {
@@ -156,7 +137,6 @@
                 <option value="">All Categories</option>
                 <option value="books">Books</option>
                 <option value="clothing">Clothing</option>
-                <!-- Add more categories as needed -->
             </select>
 
             <h2>Sort Products</h2>
@@ -190,7 +170,6 @@
         </form>
     </div>
 
-    <!-- Add to the script section -->
     <script>
         const products = [
             { id: 1, name: 'Cover for all Electronics products', price: 299.99, image: 'https://econtroldevices.com/wp-content/uploads/2021/12/7.png' },
@@ -202,13 +181,14 @@
         ];
 
         const cart = [];
-        let isLoggedIn = false; // Flag to track login status
+        let isLoggedIn = false;
 
         function renderProducts() {
             const filter = document.getElementById('filter').value;
             const sort = document.getElementById('sort').value;
 
             let filteredProducts = products;
+
             if (filter) {
                 filteredProducts = filteredProducts.filter(p => p.category === filter);
             }
@@ -236,7 +216,6 @@
                 productList.appendChild(productCard);
             });
 
-            // Attach event listeners to buttons
             document.querySelectorAll('.add-to-cart').forEach(button => {
                 button.addEventListener('click', (e) => {
                     addToCart(parseInt(e.target.getAttribute('data-id')));
@@ -292,7 +271,6 @@
         }
 
         function login(username, password) {
-            // Mock login check (replace with real authentication logic)
             if (username && password) {
                 isLoggedIn = true;
                 document.getElementById('auth-section').style.display = 'none';
